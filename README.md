@@ -11,3 +11,5 @@ it and use it.
 
 P.S. Thanks to Joan Molina from http://www.uic.es/ for iframe bug-report
 and fix.
+
+P.P.S. Dont look into the code. I know it is weird (:
