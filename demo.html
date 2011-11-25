@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+
+	<script src="jquery.dialog.extra.js"></script>
+
+	<meta charset=utf-8 />
+	
+	
+	<script>
+	
+$(function(){
+	
+	$('#ex1').click(function(){
+		var div = $('<div />').html('<h3>Hello!</h3> I can be minimized and maximized!')
+		div.dialog(
+			{
+				canMinimize:true,
+				canMaximize:true,
+				title:'Dialog'
+			})
+	})
+	
+	$('#ex2').click(function(){
+		var div = $('<div />').html('<h3>Hello!</h3> I can be minimized and maximized <b>programmatically</b>!')
+		div.dialog(
+			{
+				canMinimize:true,
+				canMaximize:true,
+				title:'Dialog',
+				buttons:[
+					{
+						text:'Min',
+						click:function(){
+							div.dialog('restore') //need to restore if maximized before
+							div.dialog('minimize')
+						}
+					},
+					{
+						text:'Max',
+						click:function(){
+							div.dialog('maximize')
+						}
+					},
+					{
+						text:'Rest',
+						click:function(){
+							div.dialog('restore')
+						}
+					}
+				]
+			})
+	})
+	
+})
+	
+	</script>
+
+<title>jQuery UI dialog extra demo</title>
+</head>
+<body>
+  <button id="ex1">Example 1</button>
+  <button id="ex2">Example 2</button>
+</body>
+</html>​
