@@ -197,6 +197,7 @@
             this.options.originalHeight = this.options.height
             this.options.originalLeft = this.uiDialog.offset().left
             this.options.originalTop = this.uiDialog.offset().top
+			this.options.height = this.element.height()
 		},
         _restorePosition: function() {
 			this.uiDialog.css({
@@ -208,12 +209,14 @@
 			this.uiDialog.css({
 				height:this.options.originalHeight,
 				width:this.options.originalWidth
-			})
+			});
+			this.element.parent().height(this.options.height+this.titlebarHeight+11);
+			this.element.height(this.options.height);
 		},
 		_maximizedResizeHandler: function(event) {
 			var newHeight = $(window).height()-11;
             var newWidth = $(window).width()-11;
-            event.data.dialogObject.uiDialog.css({top:1, left: 1, width:newWidth, height:newHeight})
+            event.data.dialogObject.uiDialog.css({top:1, left: 1, width:newWidth, height:newHeight});
 		},
         
         restore: function() {
@@ -259,15 +262,15 @@
 				this.uiDialog.resizable( 'destroy' )
 			}
             this.uiDialog.draggable( 'destroy' )
-            this._savePosition()
+            this._savePosition();
             
             var newHeight = $(window).height()-11;
             var newWidth = $(window).width()-11;
-			self.uiDialog.animate({top:1, left: 1, width:newWidth, height:newHeight},200)            
+			self.uiDialog.animate({top:0, left: 1, width:newWidth, height:newHeight},200)            
             $(window).bind('resize', {dialogObject:self}, self._maximizedResizeHandler)
             
             self.element.show();
-			self.element.css({width:'auto', height:'auto'})
+			self.element.css({width:'auto','height':newHeight-this.titlebarHeight-11 })
             
             this.uiDialogTitlebarMaximize.hide();
             this.uiDialogTitlebarMinimize.hide();
