@@ -10,6 +10,7 @@
  * 
  * Idea based on: Extension of JQuery UI Dialog widget to add custom minimizing capabilities (by Ryan Curtis)
  * 
+ * 2012 PauloRB - Changed to put the minimized in the bottom of the screen
  */
 (function($){
     var def_options = {
@@ -249,6 +250,9 @@
             this.uiDialog.animate({width: 200, height:this.titlebarHeight},200);
             this.element.hide();
             
+            this.uiDialog.css("top", "");
+            this.uiDialog.css("bottom", "0");
+
             this.uiDialogTitlebarMaximize.show();
             this.uiDialogTitlebarMinimize.hide();
             this.uiDialogTitlebarRest.show();
